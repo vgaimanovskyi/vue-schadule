@@ -1,30 +1,33 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div class="page">
+    <transition name="top">
+      <my-error v-if="getError"></my-error>
+    </transition>
+
+    <router-view />
   </div>
-  <router-view/>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import "@/style/main.scss";
+import { mapGetters } from "vuex";
 
-#nav {
-  padding: 30px;
+export default {
+  name: "Create",
+  computed: {
+    ...mapGetters(["getError"]),
+  },
+  created() {
+    this.$store.dispatch("initEvents");
+  },
+};
+</script>
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+<style lang="scss" scoped>
+.page {
+  padding: 80px 20px 20px 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  // background: rgba(204, 204, 204, 0.2);
 }
 </style>
