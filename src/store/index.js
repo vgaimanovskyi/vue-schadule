@@ -58,7 +58,7 @@ export default createStore({
     initEvents({ commit }) {
       try {
         const events = JSON.parse(localStorage.getItem("vue-schadule"));
-        if (events.length) commit("SET_EVENTS", events);
+        if (events?.length) commit("SET_EVENTS", events);
       } catch (error) {
         commit("SET_NEW_ERROR", "Error! The event didn't init.");
       }
